@@ -7,6 +7,19 @@ import "./Login.css";
   integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
   crossorigin="anonymous"></script>;
 
+{/* <script>
+const togglePassword = document.querySelector('#togglePassword');
+  const password = document.querySelector('#id_password');
+
+  togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+</script> */}
+
 function Login() {
   return (
     <div className="outer-wrapper">
@@ -48,6 +61,7 @@ function Login() {
               </label>
               <div className="input-icons">
                 <i class="fa fa-key icon"></i>
+                
                 <input
                   className="input-field"
                   type="password"
@@ -55,11 +69,11 @@ function Login() {
                   id="password"
                   placeholder="Enter password"
                 />
-                {/* <i class="far fa-eye" id="togglePassword"></i> */}
+                <i class="far fa-eye" id="togglePassword"></i>
               </div>
             </div>
 
-            <div className="login_button">
+            <div className="login_button d-grid gap-2">
               <button className="btn btn-warning">
                 <b>Login</b>
               </button>
