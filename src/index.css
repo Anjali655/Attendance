@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+#root{
+  background-image: url("/public/landscape.jpg");
+  background-repeat: "no-repeat";
+  background-attachment: "fixed";
+  background-size: "cover";
+}
