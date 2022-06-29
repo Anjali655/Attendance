@@ -4,25 +4,50 @@
 *{
   box-sizing: border-box;
   
+
+}
+
+@media (max-width: 1150px) {
+  /* .outer-wrapper{
+    flex-direction: column;
+  } */
+  .form-wrapper{
+    width: 100%;
+    overflow-x: scroll;
+    margin-bottom: 30px;
+  }
+  .login-page{
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 1200px){
+  /*Tablets [601px -> 1200px]*/
+}
+@media only screen and (max-width: 800px){
+/*Big smartphones [426px -> 600px]*/
+}
+@media only screen and (max-width: 425px){
+/*Small smartphones [325px -> 425px]*/
 }
 
 .form-wrapper{
-  width: 700px;
+  width: 800px;
   height: 500px;
   justify-content: center;
   display: flex;
   align-items: center;
-  border: 5px solid violet;
+  border: 5px solid rgb(255, 165, 8);
   border-radius: 10px;
   margin: 0 auto;
   box-shadow: 5px 10px 7px rgba(13, 10, 10, 0.1);
-  background: rgb(246, 241, 241);
+  background: white;
   flex-direction: column;
 
   }
 
 .login-page{
   display: flex;
+  align-items: center;
 }
 
 .outer-wrapper{
@@ -34,9 +59,11 @@
 }
 
 .login-image{
-  box-shadow: 5px 10px 7px 10px rgba(13, 10, 10, 0.1);
+  /* box-shadow: 5px 10px 7px 10px rgba(13, 10, 10, 0.1); */
   /* border-top-left-radius: 10px; */
+  object-fit: cover;
 }
+
 
 /* .login-form{
    height: 100%;
@@ -53,37 +80,47 @@
 
   .login-form{
     height: 100%;
-     width: 300px;
+     width: 350px;
      justify-content: center;
      display: flex;
      /* align-items: center; */
-     /* border-radius: 10px; */
-     /* border-top-right-radius: 10px; */
-     /* border-bottom-right-radius: 10px; */
+     border-radius: 10px;
+     border-top-right-radius: 10px;
+     border-bottom-right-radius: 10px;
      margin: 0 auto;
      box-shadow: 5px 10px 7px rgba(13, 10, 10, 0.1);
      background: rgb(246, 241, 241);
      flex-direction: column;
+     margin-left: 30px;
    }
   
 
 h1{
   font-family: 'Quicksand', sans-serif;
-  color: violet;
+  color: rgb(255, 165, 8);
   text-align: center; 
 
 }
 
 .email-input, .password-input{
-  padding: 10px;
-  margin: 2px;  
-  /* display: flex; */
+  padding: 15px;
+  margin-top: 2px;  
+
 }
 
+.email-input, .password-input{
+  padding: 15px;
+  margin-top: 2px;  
+
+}
+
+label{
+  color: rgb(255, 165, 8);
+}
 
 #email, #password{
-      border-radius: 6px;
-      padding: 10px;
+      border-radius: 30px;
+      padding: 7px;
       width: 100%; 
 }
 
@@ -94,7 +131,6 @@ h1{
     margin:  20px 1px; 
     width: 90%; 
     text-align: center;
-    color: violet;
     margin-bottom: 40px;
     padding: 10px;
     width: 100%; 
@@ -110,7 +146,6 @@ h1, label{
   font-size: 18px;
   padding: 10px;
 }
-
 
 
 
@@ -137,6 +172,13 @@ h1, label{
 }
 
 #togglePassword{
-  margin-left: 250px; 
+  margin-left: 290px; 
 cursor: pointer;
 }
+
+
+/* .heading{
+  font-size: "40px";
+ font-weight: "bold";
+ color: rgb(255, 165, 8)
+} */

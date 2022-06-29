@@ -7,18 +7,18 @@ import "./Login.css";
   integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
   crossorigin="anonymous"></script>;
 
-{/* <script>
-const togglePassword = document.querySelector('#togglePassword');
-  const password = document.querySelector('#id_password');
+// { <script>
+// const togglePassword = document.querySelector('#togglePassword');
+//   const password = document.querySelector('#id_password');
 
-  togglePassword.addEventListener('click', function (e) {
-    // toggle the type attribute
-    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-    password.setAttribute('type', type);
-    // toggle the eye slash icon
-    this.classList.toggle('fa-eye-slash');
-});
-</script> */}
+//   togglePassword.addEventListener('click', function (e) {
+//     // toggle the type attribute
+//     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+//     password.setAttribute('type', type);
+//     // toggle the eye slash icon
+//     this.classList.toggle('fa-eye-slash');
+// });
+// </script> }
 
 function Login() {
   return (
@@ -27,18 +27,19 @@ function Login() {
         <div className="login-page">
           <div className="login-image">
             <img
-              src="Mobile-login-Cristina.jpg"
+              src="programmer.jpg"
               alt="Trulli"
-              width="300px"
-              height="450px"
+              width="350px"
+              height="380px"
+              object-fit="cover"
               
             />
           </div>
 
           <div className="login-form">
-            <h1>
-              <b>LOGIN FORM</b>
-            </h1>
+            <div style ={{fontSize: "25px", fontWeight: "bold", color: "orange", marginLeft: "50px", marginTop: "10px"}}>
+            Codedrill Attendance
+            </div>
             <div className="email-input">
               <label>
                 <b>Email:</b>
@@ -74,7 +75,7 @@ function Login() {
             </div>
 
             <div className="login_button d-grid gap-2">
-              <button className="btn btn-warning">
+              <button className="btn btn-warning rounded-pill">
                 <b>Login</b>
               </button>
             </div>
