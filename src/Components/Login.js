@@ -29,7 +29,7 @@ function Login() {
             <img
               src="programmer.jpg"
               alt="Trulli"
-              width="350px"
+              width="355px"
               height="380px"
               object-fit="cover"
               

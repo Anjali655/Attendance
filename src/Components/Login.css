@@ -3,32 +3,28 @@
 
 *{
   box-sizing: border-box;
-  
-
 }
 
-@media (max-width: 1150px) {
-  /* .outer-wrapper{
-    flex-direction: column;
-  } */
+
+@media screen and (max-width: 767px){
   .form-wrapper{
     width: 100%;
-    overflow-x: scroll;
-    margin-bottom: 30px;
-  }
-  .login-page{
-    margin: 0;
   }
 }
-@media only screen and (max-width: 1200px){
-  /*Tablets [601px -> 1200px]*/
-}
-@media only screen and (max-width: 800px){
-/*Big smartphones [426px -> 600px]*/
-}
-@media only screen and (max-width: 425px){
-/*Small smartphones [325px -> 425px]*/
-}
+@media only screen and (max-width: 476px){
+/* Small smartphones [325px -> 425px] */
+    .outer-wrapper .form-wrapper{
+      height: auto;
+    }
+    .form-wrapper .login-page{
+      display:block;
+    }
+    .login-image{
+      display: none;
+    }
+} 
+
+
 
 .form-wrapper{
   width: 800px;
@@ -56,6 +52,13 @@
   align-items: center;
   height: 100%;
   /* box-shadow: 5px 10px 7px rgba(13, 10, 10, 0.1); */
+  background-image: 
+  url("/public/orange-bg.jpg");
+  background-size: cover;
+  background-repeat:no-repeat; 
+  background-attachment: fixed;
+  height: 100vh;
+  
 }
 
 .login-image{
@@ -87,14 +90,13 @@
      border-radius: 10px;
      border-top-right-radius: 10px;
      border-bottom-right-radius: 10px;
-     margin: 0 auto;
+     /* margin: 0 auto; */
      box-shadow: 5px 10px 7px rgba(13, 10, 10, 0.1);
      background: rgb(246, 241, 241);
      flex-direction: column;
-     margin-left: 30px;
-   }
   
-
+  }
+  
 h1{
   font-family: 'Quicksand', sans-serif;
   color: rgb(255, 165, 8);
@@ -176,9 +178,3 @@ h1, label{
 cursor: pointer;
 }
 
-
-/* .heading{
-  font-size: "40px";
- font-weight: "bold";
- color: rgb(255, 165, 8)
-} */
