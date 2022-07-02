@@ -11,12 +11,13 @@
     width: 100%;
   }
 }
+
 @media only screen and (max-width: 476px){
 /* Small smartphones [325px -> 425px] */
-    .outer-wrapper .form-wrapper{
+    .outer-slide .form-slide{
       height: auto;
     }
-    .form-wrapper .login-page{
+    .form-slide .login-slide{
       display:block;
     }
     .login-image{
@@ -26,34 +27,35 @@
 
 
 
-.form-wrapper{
+.form-slide{
   width: 800px;
   height: 500px;
   justify-content: center;
   display: flex;
   align-items: center;
-  border: 5px solid rgb(255, 165, 8);
+  border: 5px solid blue;
   border-radius: 10px;
   margin: 0 auto;
   box-shadow: 5px 10px 7px rgba(13, 10, 10, 0.1);
   background: white;
+  /* background: rgb(112, 159, 229); */
   flex-direction: column;
 
   }
 
-.login-page{
+.login-slide{
   display: flex;
   align-items: center;
 }
 
-.outer-wrapper{
+.outer-slide{
   padding: 100px auto;
   display: flex;
   align-items: center;
   height: 100%;
   /* box-shadow: 5px 10px 7px rgba(13, 10, 10, 0.1); */
   background-image: 
-  url("/public/orange-bg.jpg");
+  url("/public/admin-loginbg.jpg");
   background-size: cover;
   background-repeat:no-repeat; 
   background-attachment: fixed;
@@ -81,7 +83,7 @@
     flex-direction: column;
   } */
 
-  .login-form{
+  .login-form-slide{
     height: 100%;
      width: 350px;
      justify-content: center;
@@ -101,7 +103,6 @@
   font-family: 'Quicksand', sans-serif;
   color: rgb(255, 165, 8);
   text-align: center; 
-
 } */
 
 .email-input, .password-input{
@@ -110,14 +111,14 @@
 
 }
 
-.email-input, .password-input{
+.email-input-slide, .password-input-slide{
   padding: 15px;
   margin-top: 2px;  
 
 }
 
-label{
-  color: rgb(255, 165, 8);
+.password-input-slide .label, .email-input-slide .label{
+  color: blue;
 }
 
 #email, #password{

@@ -1,11 +1,17 @@
 import React from "react";
 import "./EmpDashboard.css";
+const moment = require("moment");
 
 function EmpDashboard() {
+
   return (
     <div>
       <div className="welcome">
-        <h1>
+        <h1 style={{
+          textAlign:'center',
+          fontFamily: 'Quicksand sans-serif',
+          color:"rgb(255, 165, 8)",
+          }}>
           <b>Welcome Ankush</b>
         </h1>
         <img
@@ -14,13 +20,21 @@ function EmpDashboard() {
         ></img>
       </div>
 
+      <img className="dashboard-corner" src="/dashboard-corner.png"></img>
+
       <div className="first-wrapper">
         <div className="wrapper">
-          
-          <a href="/"><button class="bn632-hover bn22"><b>I am Present</b></button></a>
-          
+          <div>
+            <a href="/">
+              <button className="bn632-hover bn22">
+                <b style={{color:"rgb(255, 165, 8)"}}>I am Present</b>
+              </button>
+            </a>
+          </div>
           <div className="date">
-            <p><b>Date:</b></p>
+            <p>
+              <b>Date:{moment().format('LL')}</b>
+            </p>
           </div>
         </div>
       </div>

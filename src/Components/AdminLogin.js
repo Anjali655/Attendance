@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.css";
+import "./AdminLogin.css";
 
 <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>;
 <script
@@ -8,12 +8,13 @@ import "./Login.css";
   crossorigin="anonymous"
 ></script>;
 
-function Login() {
+function AdminLogin() {
   const [eye, setEye] = useState(false);
   const [defaulteye, setSefaulteye] = useState("far fa-eye");
   const [inputType, setInputType] = useState("password");
 
   function ShowAndHidePassword() {
+    // console.log(defaulteye, 'defaulteye');
     if (eye === false) {
       setEye(true);
       setSefaulteye("far fa-eye-slash");
@@ -25,13 +26,15 @@ function Login() {
     }
   }
 
+  console.log(defaulteye);
+
   return (
-    <div className="outer-wrapper">
-      <div className="form-wrapper">
-        <div className="login-page">
+    <div className="outer-slide">
+      <div className="form-slide">
+        <div className="login-slide">
           <div className="login-image">
             <img
-              src="programmer.jpg"
+              src="admin-login.jpg"
               alt="Trulli"
               width="355px"
               height="380px"
@@ -39,19 +42,19 @@ function Login() {
             />
           </div>
 
-          <div className="login-form">
+          <div className="login-form-slide">
             <div
               style={{
                 fontSize: "25px",
                 fontWeight: "bold",
-                color: "orange",
-                marginLeft: "50px",
+                color: "blue",
+                marginLeft: "100px",
                 marginTop: "10px",
               }}
             >
-              Codedrill Attendance
+              Attendance
             </div>
-            <div className="email-input">
+            <div className="email-input-slide">
               <label>
                 <b>Email:</b>
               </label>
@@ -67,7 +70,7 @@ function Login() {
               </div>
             </div>
 
-            <div className="password-input">
+            <div className="password-input-slide">
               <label>
                 <b>Password:</b>
               </label>
@@ -82,12 +85,16 @@ function Login() {
                   placeholder="Enter password"
                 />
 
-                <i className={defaulteye} id="togglePassword"></i>
+                <i
+                  className={defaulteye}
+                  onClick={ShowAndHidePassword}
+                  id="togglePassword"
+                ></i>
               </div>
             </div>
 
             <div className="login_button d-grid gap-2">
-              <button className="btn btn-warning rounded-pill">
+              <button className="btn btn-primary rounded-pill">
                 <b>Login</b>
               </button>
             </div>
@@ -98,4 +105,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default AdminLogin;

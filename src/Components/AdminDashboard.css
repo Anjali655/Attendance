@@ -1,0 +1,96 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+} 
+
+.outer-box{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    width: 100%;
+    margin: 10px;
+}
+
+.inner-box{
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    padding: 10px;  
+    /* flex-direction: row; */
+}
+
+.inner-box table{
+    border: 1px solid black;
+    padding: 2px;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-box th{
+    border: 1px solid black;
+    padding: 10px;
+    color: blue;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.inner-box td{
+    border: 1px solid black;
+    padding: 10px; 
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.inner-box table{
+    width: 100%;
+    margin: 50px;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-box tr{
+    border: 1px solid black;
+    
+}
+
+.dashboardbg{
+
+    background-repeat:no-repeat; 
+    background-attachment: fixed;
+    width: auto;
+    height: 95vh;
+    position: absolute;
+    z-index: -1;
+}
+.welcome-admin{
+    float: right;
+    display:flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.welcome-admin h1{
+    font-family: 'Quicksand' , sans-serif;
+    color: blue;
+    text-align: right;
+    padding: 20px;
+    padding-right: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.welcome-admin img{
+    height: 10%;
+    width: auto;
+    padding-right: 10px;
+}
