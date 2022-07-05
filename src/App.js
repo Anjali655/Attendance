@@ -4,15 +4,22 @@ import Login from "./Components/Login";
 import EmpDashboard from "./Components/EmpDashboard";
 import AdminLogin from "./Components/AdminLogin";
 import AdminDashboard from "./Components/AdminDashboard";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Login />
-        {/* <EmpDashboard/> */}
-        {/* <AdminLogin /> */}
-        {/* <AdminDashboard/> */}
+        <Router>
+          <div>
+            <Routes>
+              <Route exact path="/" element={<Login />} />
+              <Route exact path="/emp-dash" element={<EmpDashboard />} />
+              <Route exact path="/admin" element={<AdminLogin />} />
+              <Route path="/admin-dash" element={<AdminDashboard />} />
+            </Routes>
+          </div>
+        </Router>
       </div>
     );
   }

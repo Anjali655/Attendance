@@ -13,7 +13,7 @@
     justify-content: center;
     height: 80vh;
     width: 100%;
-    margin: 10px;
+    /* margin: 10px; */
 }
 
 .inner-box{
@@ -27,14 +27,21 @@
 }
 
 .inner-box table{
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border-radius: 10px;
     padding: 2px;
     align-items: center;
     justify-content: center;
 }
 
-.inner-box th{
+.inner-box tr{
     border: 1px solid black;
+    border-radius: 10px;
+}
+
+.inner-box th{
+    /* border: 1px solid black; */
+    /* border-radius: 10px; */
     padding: 10px;
     color: blue;
     align-items: center;
@@ -43,7 +50,8 @@
 }
 
 .inner-box td{
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    /* border-radius: 10px; */
     padding: 10px; 
     align-items: center;
     justify-content: center;
@@ -53,24 +61,23 @@
 .inner-box table{
     width: 100%;
     margin: 50px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border-radius: 10px;
     align-items: center;
     justify-content: center;
 }
 
-.inner-box tr{
-    border: 1px solid black;
-    
-}
+
 
 .dashboardbg{
 
-    background-repeat:no-repeat; 
-    background-attachment: fixed;
-    width: auto;
+    /* background-repeat:no-repeat; 
+    background-attachment: fixed; */
+    width: 100%;
     height: 95vh;
     position: absolute;
     z-index: -1;
+    object-fit: cover;
 }
 .welcome-admin{
     float: right;

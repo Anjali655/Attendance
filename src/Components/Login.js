@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import { useLazyQuery, gql } from "@apollo/client";
 
 <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>;
 <script
@@ -13,6 +15,18 @@ function Login() {
   const [defaulteye, setSefaulteye] = useState("far fa-eye");
   const [inputType, setInputType] = useState("password");
 
+  const GET_LOGIN = gql`
+    query ExampleQuery($input: loginInput) {
+      empLogin(input: $input) {
+        message
+        data {
+          token
+        }
+        status
+      }
+    }
+  `;
+
   function ShowAndHidePassword() {
     if (eye === false) {
       setEye(true);
@@ -22,6 +36,45 @@ function Login() {
       setEye(false);
       setSefaulteye("far fa-eye");
       setInputType("password");
+    }
+  }
+
+  const [email, setEmail] = useState();
+  const [pwd, setPwd] = useState();
+
+  // const [loginCheck, { loading, error, data }] = useQuery(GET_LOGIN);
+  const [data, { loading, error }] = useLazyQuery(GET_LOGIN);
+  const [emailError, setEmailErr] = useState("");
+  const [pwdError, setPwdErr] = useState("");
+
+  const [apiErr, setApiErr] = useState("");
+  const navigate = useNavigate();
+  localStorage.clear();
+
+  async function handleClickEvent() {
+    if (email && pwd) {
+      const loginData = await data({
+        variables: {
+          input: {
+            username: email,
+            password: pwd,
+          },
+        },
+      });
+
+      // console.log(loginData);
+      console.log(loginData?.data);
+
+      if (loginData?.data?.empLogin?.status === 200) {
+        localStorage.clear();
+        localStorage.setItem("token", loginData?.data?.empLogin?.data?.token);
+        navigate("/emp-dash");
+      } else {
+        setApiErr(loginData?.data?.empLogin?.message);
+      }
+    } else {
+      email ? setEmailErr("") : setEmailErr("Please enter login email");
+      pwd ? setPwdErr("") : setPwdErr("Please enter valid password");
     }
   }
 
@@ -51,6 +104,7 @@ function Login() {
             >
               Codedrill Attendance
             </div>
+            <label>{apiErr}</label>
             <div className="email-input">
               <label>
                 <b>Email:</b>
@@ -63,8 +117,13 @@ function Login() {
                   name="email"
                   id="email"
                   placeholder="Enter email"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
               </div>
+              {/* alert('This is an alert message) */}
+              <label>{emailError}</label>
             </div>
 
             <div className="password-input">
@@ -80,14 +139,21 @@ function Login() {
                   name="password"
                   id="password"
                   placeholder="Enter password"
+                  onChange={(e) => {
+                    setPwd(e.target.value);
+                  }}
                 />
 
                 <i className={defaulteye} id="togglePassword"></i>
               </div>
+              <label>{pwdError}</label>
             </div>
 
             <div className="login_button d-grid gap-2">
-              <button className="btn btn-warning rounded-pill">
+              <button
+                className="btn btn-warning rounded-pill"
+                onClick={handleClickEvent}
+              >
                 <b>Login</b>
               </button>
             </div>

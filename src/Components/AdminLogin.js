@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./AdminLogin.css";
+import { useLazyQuery, gql } from "@apollo/client";
 
 <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>;
 <script
@@ -12,6 +14,18 @@ function AdminLogin() {
   const [eye, setEye] = useState(false);
   const [defaulteye, setSefaulteye] = useState("far fa-eye");
   const [inputType, setInputType] = useState("password");
+
+  const GET_LOGIN = gql`
+    query AdminLogin($input: loginInput) {
+      adminLogin(input: $input) {
+        data {
+          token
+        }
+        message
+        status
+      }
+    }
+  `;
 
   function ShowAndHidePassword() {
     // console.log(defaulteye, 'defaulteye');
@@ -26,7 +40,42 @@ function AdminLogin() {
     }
   }
 
-  console.log(defaulteye);
+  const [email, setEmail] = useState();
+  const [pwd, setPwd] = useState();
+
+  // const [loginCheck, { loading, error, data }] = useQuery(GET_LOGIN);
+  const [data, { loading, error }] = useLazyQuery(GET_LOGIN);
+  const [emailError, setEmailErr] = useState("");
+  const [pwdError, setPwdErr] = useState("");
+
+  const [apiErr, setApiErr] = useState("");
+  const navigate = useNavigate();
+
+  async function handleClickEvent() {
+    if (email && pwd) {
+      const loginData = await data({
+        variables: {
+          input: {
+            username: email,
+            password: pwd,
+          },
+        },
+      });
+
+      console.log(loginData?.data);
+
+      if (loginData?.data?.adminLogin?.status === 200) {
+        localStorage.clear();
+        localStorage.setItem("token", loginData?.data?.adminLogin?.data?.token);
+        navigate("/admin-dash");
+      } else {
+        setApiErr(loginData?.data?.adminLogin?.message);
+      }
+    } else {
+      email ? setEmailErr("") : setEmailErr("Please enter login email");
+      pwd ? setPwdErr("") : setPwdErr("Please enter valid password");
+    }
+  }
 
   return (
     <div className="outer-slide">
@@ -54,6 +103,7 @@ function AdminLogin() {
             >
               Attendance
             </div>
+            <label>{apiErr}</label>
             <div className="email-input-slide">
               <label>
                 <b>Email:</b>
@@ -66,8 +116,12 @@ function AdminLogin() {
                   name="email"
                   id="email"
                   placeholder="Enter email"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
               </div>
+              <label>{emailError}</label>
             </div>
 
             <div className="password-input-slide">
@@ -83,6 +137,9 @@ function AdminLogin() {
                   name="password"
                   id="password"
                   placeholder="Enter password"
+                  onChange={(e) => {
+                    setPwd(e.target.value);
+                  }}
                 />
 
                 <i
@@ -91,10 +148,14 @@ function AdminLogin() {
                   id="togglePassword"
                 ></i>
               </div>
+              <label>{pwdError}</label>
             </div>
 
             <div className="login_button d-grid gap-2">
-              <button className="btn btn-primary rounded-pill">
+              <button
+                className="btn btn-primary rounded-pill"
+                onClick={handleClickEvent}
+              >
                 <b>Login</b>
               </button>
             </div>
