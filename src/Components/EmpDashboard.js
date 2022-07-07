@@ -64,6 +64,8 @@ function EmpDashboard() {
           ":" +
           (seconds > 9 ? seconds : "0" + seconds)
       );
+    }else{
+      navigate("/");
     }
   };
 

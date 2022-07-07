@@ -116,3 +116,31 @@
     width: auto;
     padding-right: 10px;
 }
+
+.modalTitle{
+    color:blue;
+    font-weight: bold;
+    padding-left: 90px;
+    /* background-color:green; */
+}
+
+.modalLabel1{
+    color:blue; 
+    padding-left: 60px;
+}
+
+.modalLabel2{
+    color:blue; 
+    padding-left: 50px;
+}
+
+.modalLabel3{
+    color:blue; 
+    padding-left: 56px;
+}
+
+.modalBody{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

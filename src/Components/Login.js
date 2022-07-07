@@ -85,7 +85,7 @@ function Login() {
   return (
     <div className="outer-wrapper">
       <div className="classify">
-        <button className="btn btn-primary btn-lg" onClick={navigateToAdmin}>
+        <button className="btn btn-primary btn-md" onClick={navigateToAdmin}>
           Admin Login
         </button>
       </div>

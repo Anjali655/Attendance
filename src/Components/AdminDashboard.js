@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AdminDashboard.css";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, useMutation, gql } from "@apollo/client";
+import { Modal, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+// import AddEmp from "./Components/AddEmp";
 // const moment = require("moment");
 
 function AdminDashboard() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const GET_ATTENDANCE = gql`
     query GetTodaysAttendance {
       getTodaysAttendance {
@@ -22,6 +29,38 @@ function AdminDashboard() {
   if (loading) return <div>Loading...</div>;
   if (error) return `Error! ${error}`;
 
+  const ADD_EMP = gql`
+    mutation Mutation($input: signupInput) {
+      empSignup(input: $input) {
+        data {
+          fullname
+          username
+          password
+        }
+      }
+    }
+  `;
+
+  // Pass mutation to useMutation
+  const [signup, { info, loadings, errors }] = useMutation(ADD_EMP);
+
+  if (loadings) return "Submitting...";
+  if (errors) return `Submission error! ${error.message}`;
+
+  const AddEmployee = async () => {
+    const addEmp = await signup({
+      variables: {
+        fullname: "Himanshu Sharma",
+        username: "himanshu@codedrill.com",
+        password: "himanshu@123",
+      },
+    });
+    return addEmp;
+  };
+
+  // console.log(addEmp, "addEmp>>>>>>>>>>>>>>>>>>>>");
+    const result = await infos(addEmp).save();
+    
   return (
     <div>
       <div className="welcome-admin">
@@ -43,9 +82,46 @@ function AdminDashboard() {
       <img className="dashboardbg" src="/admin-dashboard1.png"></img>
 
       <div className="outer-box">
-        <div className="addEmp">
-          <button className="btn btn-primary btn-md">Add Employee</button>
-        </div>
+        <Button variant="primary" className="addEmp" onClick={handleShow}>
+          Add Employee
+        </Button>
+        <Modal
+          show={show}
+          onHide={handleClose}
+          size="md"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>
+              <h3 className="modalTitle">Add new Employee</h3>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <label className="modalLabel1">
+              <b>Fullname:</b>&nbsp;&nbsp;&nbsp;
+              <input className="modalBody" type="text" name="fullname" />
+            </label>
+
+            <label className="modalLabel2">
+              <b>Username:</b>&nbsp;&nbsp;&nbsp;
+              <input className="modalBody" type="email" name="email" />
+            </label>
+
+            <label className="modalLabel3">
+              <b>Password:</b>&nbsp;&nbsp;&nbsp;
+              <input className="modalBody" type="text" name="password" />
+            </label>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Modal>
 
         <div className="inner-box">
           <table className="table table-hover">
