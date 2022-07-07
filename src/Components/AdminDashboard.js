@@ -19,8 +19,8 @@ function AdminDashboard() {
   `;
   const { data, loading, error } = useQuery(GET_ATTENDANCE);
 
-  // if (loading) return <div>Loading...</div>;
-  // if (error) return `Error! ${error}`;
+  if (loading) return <div>Loading...</div>;
+  if (error) return `Error! ${error}`;
 
   return (
     <div>
@@ -43,6 +43,10 @@ function AdminDashboard() {
       <img className="dashboardbg" src="/admin-dashboard1.png"></img>
 
       <div className="outer-box">
+        <div className="addEmp">
+          <button className="btn btn-primary btn-md">Add Employee</button>
+        </div>
+
         <div className="inner-box">
           <table className="table table-hover">
             <thead className="table-primary">

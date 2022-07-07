@@ -48,7 +48,6 @@ function Login() {
   const [pwdError, setPwdErr] = useState("");
 
   const [apiErr, setApiErr] = useState("");
-  const navigate = useNavigate();
   localStorage.clear();
 
   async function handleClickEvent() {
@@ -78,8 +77,19 @@ function Login() {
     }
   }
 
+  const navigate = useNavigate();
+  const navigateToAdmin = () => {
+    navigate("/admin");
+  };
+
   return (
     <div className="outer-wrapper">
+      <div className="classify">
+        <button className="btn btn-primary btn-lg" onClick={navigateToAdmin}>
+          Admin Login
+        </button>
+      </div>
+
       <div className="form-wrapper">
         <div className="login-page">
           <div className="login-image">

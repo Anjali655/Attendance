@@ -77,8 +77,17 @@ function AdminLogin() {
     }
   }
 
+  // const navigate = useNavigate();
+  const navigateToEmp = () => {
+    navigate('/');
+  }
+
   return (
     <div className="outer-slide">
+      <div className="classify">
+          <button className="btn btn-success btn-lg" onClick={navigateToEmp}>Employee Login</button>
+      </div>
+
       <div className="form-slide">
         <div className="login-slide">
           <div className="login-image">
@@ -94,14 +103,14 @@ function AdminLogin() {
           <div className="login-form-slide">
             <div
               style={{
-                fontSize: "25px",
+                fontSize: "20px",
                 fontWeight: "bold",
                 color: "blue",
-                marginLeft: "100px",
+                marginLeft: "60px",
                 marginTop: "10px",
               }}
             >
-              Attendance
+              Attendance Management
             </div>
             <label>{apiErr}</label>
             <div className="email-input-slide">

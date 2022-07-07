@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./EmpDashboard.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -9,10 +9,11 @@ const moment = require("moment");
 function EmpDashboard() {
   const [show, setShow] = useState(false);
   const [goback, setGOBack] = useState(false);
+  const [msg, setMsg] = useState();
   const navigate = useNavigate();
   const handleShow = () => {
     setShow(!show);
-    setTimeout(setGOBack(true), 3000);
+    setTimeout(setGOBack(true), 1000);
   };
 
   React.useEffect(() => {
@@ -31,17 +32,98 @@ function EmpDashboard() {
       }
     }
   `;
+
+  const Ref = useRef(null);
+  // The state for our timer
+  const [timer, setTimer] = useState("00:00:00");
+
+  const getTimeRemaining = (e) => {
+    // console.log(e, "events>>>>>>>>");
+    const total = Date.parse(e) - Date.parse(new Date());
+    const seconds = Math.floor((total / 1000) % 60);
+    const minutes = Math.floor((total / 1000 / 60) % 60);
+    const hours = Math.floor((total / 1000 / 60 / 60) % 24);
+    return {
+      total,
+      hours,
+      minutes,
+      seconds,
+    };
+  };
+
+  const startTimer = (e) => {
+    let { total, hours, minutes, seconds } = getTimeRemaining(e);
+    if (total >= 0) {
+      // update the timer
+      // check if less than 10 then we need to
+      // add '0' at the beginning of the variable
+      setTimer(
+        (hours > 9 ? hours : "0" + hours) +
+          ":" +
+          (minutes > 9 ? minutes : "0" + minutes) +
+          ":" +
+          (seconds > 9 ? seconds : "0" + seconds)
+      );
+    }
+  };
+
+  const clearTimer = (e) => {
+    // If you adjust it you should also need to
+    // adjust the Endtime formula we are about
+    // to code next
+    setTimer("00:00:10");
+
+    // If you try to remove this line the
+    // updating of timer Variable will be
+    // after 1000ms or 1sec
+    if (Ref.current) clearInterval(Ref.current);
+    const id = setInterval(() => {
+      startTimer(e);
+    }, 1000);
+    Ref.current = id;
+  };
+
+  const getDeadTime = () => {
+    let deadline = new Date();
+
+    // This is where you need to adjust if
+    // you entend to add more time
+    deadline.setSeconds(deadline.getSeconds() + 10);
+    return deadline;
+  };
+
+  // We put empty array to act as componentDid
+  // mount only
+  useEffect(() => {
+    clearTimer(getDeadTime());
+  }, []);
+
+  const onClickReset = () => {
+    clearTimer(getDeadTime());
+  };
+
   const [attendance, { loading, error, data }] = useMutation(SET_ATTENDANCE);
 
   const markAttendance = async () => {
     const attendancedata = await attendance({
       variables: {},
-    }); 
+    });
+
+    // console.log(
+    //   attendancedata,
+    //   "attendancedata>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    // );
 
     if (attendancedata?.data?.markAttendance?.status === 200) {
       setShow(!show);
+      setMsg("Your Attendance is marked & you will be redirected to Login page");
+    } else if (attendancedata?.data?.markAttendance?.message === "Already taken attendance") {
+      setMsg("Your Attendance is already marked & you will be redirected to Login page");
+      setShow(!show);
+
     } else {
       console.log("some error occured...");
+      // return "Your Attendance is already marked";
     }
 
     console.log(attendancedata, "attendance");
@@ -57,7 +139,7 @@ function EmpDashboard() {
             color: "rgb(255, 165, 8)",
           }}
         >
-          <b>Welcome Ankush</b>
+          <b>Welcome User</b>
         </h1>
         <img
           src="/admin.jpg"
@@ -69,13 +151,30 @@ function EmpDashboard() {
 
       <div className="first-wrapper">
         {/* MODAL POPUP */}
-        <Modal show={show} onHide={handleShow}>
+        <Modal
+          show={show}
+          onHide={handleShow}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Title id="contained-modal-title-vcenter">
+            Attendance
+          </Modal.Title>
           <Modal.Body>
             <span onClick={handleShow}>X</span> &nbsp;&nbsp;&nbsp;&nbsp;
             <span>
-              Your Attendance is marked & you will be redirected to Login page
+              {/* Your Attendance is marked & you will be redirected to Login page */}
+              {msg}
+              <div>
+                <h2>{timer}</h2>
+                <button onClick={onClickReset}>Reset</button>
+              </div>
             </span>
           </Modal.Body>
+          <Modal.Footer>
+            <Button>Close</Button>
+          </Modal.Footer>
         </Modal>
         {/* MODAL POPUP END */}
         <div className="wrapper">
