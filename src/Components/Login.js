@@ -88,15 +88,11 @@ function Login() {
         <button className="btn btn-primary btn-md" onClick={navigateToAdmin}>
           Admin Login
         </button>
-      </div> */}.
-      <div
-      variant="primary" 
-      className="classifybtn"
-      onClick={navigateToAdmin}
-      >
+      </div> */}
+      .
+      <div variant="primary" className="classifybtn" onClick={navigateToAdmin}>
         Admin Login
       </div>
-
       <div className="form-wrapper">
         <div className="login-page">
           <div className="login-image">
@@ -133,7 +129,6 @@ function Login() {
                   type="email"
                   name="email"
                   id="email"
-                  
                   placeholder="Enter email"
                   onChange={(e) => {
                     setEmail(e.target.value);

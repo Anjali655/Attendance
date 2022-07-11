@@ -56,14 +56,10 @@ function AddEmp() {
       {/* <Button variant="primary" onClick={handleShow}>
         Add Employee
       </Button> */}
-      <div 
-      variant="primary" 
-      onClick={handleShow}
-      className="classify"
-      >
+      <div variant="primary" onClick={handleShow} className="classify">
         Add Employee
       </div>
-      <Modal 
+      <Modal
         show={show}
         onHide={handleClose}
         size="md"
@@ -72,7 +68,7 @@ function AddEmp() {
       >
         <Modal.Header closeButton>
           <Modal.Title>
-            <h3 className="modalTitle">Add new Employee</h3>
+            <h4 className="modalTitle">Add New Employee</h4>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -108,7 +104,7 @@ function AddEmp() {
               className="modalBody"
               type="text"
               name="password"
-              placeholder="Enter your password"
+              placeholder="Enter password"
               onChange={(e) => {
                 setPassword(e.target.value);
               }}

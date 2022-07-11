@@ -21,13 +21,24 @@ function AdminDashboard() {
   `;
   const { data, loading, error } = useQuery(GET_ATTENDANCE);
 
-  // const [dataCheck, setDataCheck] = useState();
+  const [dataCheck, setDataCheck] = useState();
 
   // useEffect(() => {
   //   if (!data) {
   //     setDataCheck(<h3>NO DATA AVAILABLE</h3>);
   //   }
   // }, [data]);
+  console.log(data, "data>>>>>>>>>>>>>>>");
+  useEffect(() => {
+    console.log(data?.getTodaysAttendance?.data, "data");
+    if (data && data?.getTodaysAttendance?.data < 1) {
+      setDataCheck(
+        <div style={{ float: "right", paddingTop: "10px" }}>
+          <b>NO DATA AVAILABLE</b>
+        </div>
+      );
+    }
+  }, [data]);
 
   // if (loading) return <div>Loading...</div>;
   // if (error) return `Error! ${error}`;
@@ -52,9 +63,13 @@ function AdminDashboard() {
             textAlign: "center",
             fontFamily: "Quicksand sans-serif",
             color: "blue",
+            fontWeight: "bold",
+            boxShadow: "5px 10px 7px rgba(13, 10, 10, 0.1)",
+            backgroundColor: "white",
+            borderRadius: 30,
           }}
         >
-          Welcome Admin
+          <b>Welcome Admin</b>
         </h1>
         <img
           src="/admin.jpg"
@@ -78,15 +93,19 @@ function AdminDashboard() {
             </thead>
 
             <tbody className="table-light">
-              {/* {dataCheck} */}
+              {dataCheck}
               {data?.getTodaysAttendance?.data.map((value, index) => (
                 <tr key={index}>
                   <td>{value.employeeName}</td>
                   <td>
                     {value.attendance === "present" ? (
-                      <i class="bx bxs-check-circle"></i>
+                      <div style={{ color: "green", fontSize: 20 }}>
+                        <i class="bx bxs-check-circle bx-border bx-tada"></i>
+                      </div>
                     ) : (
-                      <i class="bx bx-no-entry"></i>
+                      <div style={{ color: "grey" }}>
+                        <i class="bx bx-no-entry bx-border"></i>
+                      </div>
                     )}
                   </td>
                   <td>{value.date}</td>

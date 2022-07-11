@@ -37,7 +37,8 @@
     width: 100%;
     display: flex;
     margin: 0 auto;
-    padding: 10px;  
+    padding: 10px; 
+    padding-bottom: 400px; 
     /* flex-direction: row; */
 }
 
@@ -59,6 +60,7 @@
     /* border-radius: 10px; */
     padding: 10px;
     color: blue;
+    
     align-items: center;
     justify-content: center;
     
@@ -74,7 +76,7 @@
 }
 
 .inner-box table{
-    width: 100%;
+    width: 80%;
     margin: 50px;
     /* border: 1px solid black; */
     border-radius: 10px;
@@ -98,7 +100,8 @@
     float: right;
     display:flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center; 
+       
 }
 
 .welcome-admin h1{

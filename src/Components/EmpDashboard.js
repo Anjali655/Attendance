@@ -64,7 +64,7 @@ function EmpDashboard() {
           ":" +
           (seconds > 9 ? seconds : "0" + seconds)
       );
-    }else{
+    } else {
       navigate("/");
     }
   };
@@ -118,11 +118,17 @@ function EmpDashboard() {
 
     if (attendancedata?.data?.markAttendance?.status === 200) {
       setShow(!show);
-      setMsg("Your Attendance is marked & you will be redirected to Login page");
-    } else if (attendancedata?.data?.markAttendance?.message === "Already taken attendance") {
-      setMsg("Your Attendance is already marked & you will be redirected to Login page");
+      setMsg(
+        "Your Attendance is marked & you will be redirected to Login page in..."
+      );
+    } else if (
+      attendancedata?.data?.markAttendance?.message ===
+      "Already taken attendance"
+    ) {
+      setMsg(
+        "Your Attendance is already marked & you will be redirected to Login page in..."
+      );
       setShow(!show);
-
     } else {
       console.log("some error occured...");
       // return "Your Attendance is already marked";
@@ -160,22 +166,26 @@ function EmpDashboard() {
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
-          <Modal.Title id="contained-modal-title-vcenter">
-            Attendance
+          <Modal.Title>
+            <h3 className="modalStyle">
+              <b>Attendance</b>
+            </h3>
           </Modal.Title>
           <Modal.Body>
-            <span onClick={handleShow}>X</span> &nbsp;&nbsp;&nbsp;&nbsp;
+            {/* <span onClick={handleShow}>X</span> &nbsp;&nbsp;&nbsp;&nbsp; */}
             <span>
               {/* Your Attendance is marked & you will be redirected to Login page */}
-              {msg}
-              <div>
-                <h2>{timer}</h2>
-                <button onClick={onClickReset}>Reset</button>
-              </div>
+              {msg} <b>{timer}</b>
+              {/* <div> */}
+              {/* <h2>{timer}</h2> */}
+              {/* <button onClick={onClickReset}>Reset</button> */}
+              {/* </div> */}
             </span>
           </Modal.Body>
           <Modal.Footer>
-            <Button>Close</Button>
+            <Button className="btn btn-info">
+              Close
+            </Button>
           </Modal.Footer>
         </Modal>
         {/* MODAL POPUP END */}

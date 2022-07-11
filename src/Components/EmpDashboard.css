@@ -172,5 +172,7 @@ p{
     box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
   }
 
-
-
+.modalStyle{
+  padding-left: 300px;
+  color:rgb(8, 141, 96);
+}
