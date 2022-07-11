@@ -25,10 +25,29 @@
     }
 } 
 
-.classify{
+
+
+
+.classifybutton{
   position:absolute;
-   top: 40px;
+   top: 60px;
    right: 60px;
+   background-color: rgb(12, 197, 12);
+   color: rgb(90, 11, 238);
+   border-radius: 10px;
+   padding: 15px;
+   font-size: 17px; 
+   font-weight: bold;
+   cursor: pointer;
+   text-transform: uppercase;
+   text-decoration: none;
+   font-family: sans-serif;
+   box-sizing: border-box;
+   background: linear-gradient(90deg, yellow, orange, red, violet, purple, blue, yellow);
+   background-size: 400%;
+   border-radius: 30px;
+   z-index: 1;
+   
 } 
 
 .form-slide{

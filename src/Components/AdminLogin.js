@@ -84,8 +84,15 @@ function AdminLogin() {
 
   return (
     <div className="outer-slide">
-      <div className="classify">
+      {/* <div className="classify">
           <button className="btn btn-success btn-md" onClick={navigateToEmp}>Employee Login</button>
+      </div> */}
+      <div 
+      variant="primary" 
+      className="classifybutton"
+      onClick={navigateToEmp}
+      >
+        Employee Login
       </div>
 
       <div className="form-slide">

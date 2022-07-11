@@ -11,7 +11,6 @@
 .outer-container{
     align-items: center;
     justify-content: center;
-
 }
 
 .inner-container{
@@ -25,7 +24,6 @@
     font-family: "Quicksand", "sans-serif";
     font-size: 20px;
     font-weight: bold;
-
 }
 
 .form-container{
@@ -35,3 +33,44 @@
     flex-direction: column;
     /* border: 1px solid black; */
 }
+
+
+.modalTitle{
+    color:blue;
+    font-weight: bold;
+    padding-left: 90px;
+    /* background-color:green; */
+}
+
+.modalLabel1{
+    color:blue; 
+    padding-left: 60px;
+}
+
+.modalLabel2{
+    color:blue; 
+    padding-left: 50px;
+}
+
+.modalLabel3{
+    color:blue; 
+    padding-left: 56px;
+}
+
+.modalBody{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.classify{
+    position:absolute;
+     top: 190px;
+     right: 60px;
+     background-color: rgb(68, 68, 208);
+     color: white;
+     border-radius: 10px;
+     padding: 10px;
+     font-size: 20px;
+     cursor: pointer;
+  } 
