@@ -69,11 +69,14 @@ function Login() {
         localStorage.setItem("token", loginData?.data?.empLogin?.data?.token);
         navigate("/emp-dash");
       } else {
-        setApiErr(loginData?.data?.empLogin?.message);
+        const error = loginData?.data?.empLogin?.message;
+        // setApiErr(loginData?.data?.empLogin?.message);
+        alert(error);
       }
     } else {
-      email ? setEmailErr("") : setEmailErr("Please enter login email");
-      pwd ? setPwdErr("") : setPwdErr("Please enter valid password");
+      alert("Please enter login email and valid password");
+      // email ? setEmailErr("") : setEmailErr("Please enter login email");
+      // pwd ? setPwdErr("") : setPwdErr("Please enter valid password");
     }
   }
 

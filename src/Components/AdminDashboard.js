@@ -5,6 +5,10 @@ import AddEmp from "./AddEmp";
 
 function AdminDashboard() {
   // const [show, setShow] = useState(false);
+  const [email, setEmail] = useState();
+  const [pwd, setPwd] = useState();
+
+
 
   const GET_ATTENDANCE = gql`
     query GetTodaysAttendance {

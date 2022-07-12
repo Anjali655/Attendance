@@ -19,6 +19,8 @@ function AddEmp() {
           username
           password
         }
+        message
+        status
       }
     }
   `;
@@ -26,6 +28,7 @@ function AddEmp() {
   const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [usernameErr, setUsernameErr] = useState("");
   // localStorage.clear();
 
   const handleCreate = async () => {
@@ -44,8 +47,18 @@ function AddEmp() {
       navigate("/admin-dash");
     }
   };
-  // console.log(signup, "signup>>>>>>>>>>>>>>>>>>>>>>");
-  // if (data?.data?.empSignup?.data?.__typename === "signupData") {
+
+  const success = data?.data?.empSignup;
+  console.log(success);
+  // if (data?.data?.empSignup?.status === 200) {
+  //    localStorage.clear();
+  //   const success = data?.data?.empSignup?.message;
+  //   console.log(success);
+  //   alert(success);
+  // } else {
+  //   const error = data?.data?.empSignup?.message;
+  //   console.log(error);
+  //   alert(error);
   // }
 
   if (loading) return "Submitting...";
