@@ -42,14 +42,16 @@ function AddEmp() {
           },
         },
       });
+      const success = data?.data?.empSignup?.message;
+      alert(success);
       console.log(data, "data >>>>>>>>>>>>>>>>>>");
       setShow(false);
       navigate("/admin-dash");
     }
   };
 
-  const success = data?.data?.empSignup;
-  console.log(success);
+  // const success = data?.data?.empSignup;
+  // console.log(data?.data?.empSignup);
   // if (data?.data?.empSignup?.status === 200) {
   //    localStorage.clear();
   //   const success = data?.data?.empSignup?.message;
