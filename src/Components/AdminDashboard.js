@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./AdminDashboard.css";
 import { useQuery, gql } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 import AddEmp from "./AddEmp";
+import EmpList from "./EmpList";
 
 function AdminDashboard() {
   // const [show, setShow] = useState(false);
   const [email, setEmail] = useState();
   const [pwd, setPwd] = useState();
-
-
+  const navigate = useNavigate();
 
   const GET_ATTENDANCE = gql`
     query GetTodaysAttendance {
@@ -32,6 +33,18 @@ function AdminDashboard() {
   //     setDataCheck(<h3>NO DATA AVAILABLE</h3>);
   //   }
   // }, [data]);
+
+  function logout() {
+    localStorage.clear();
+    // localStorage.removeItem("token");
+    navigate("/admin");
+  }
+
+  // function emplist() {
+  //   console.log("hello");
+  //   navigate("/emp-list");
+  // }
+
   console.log(data, "data>>>>>>>>>>>>>>>");
   useEffect(() => {
     console.log(data?.getTodaysAttendance?.data, "data");
@@ -85,6 +98,21 @@ function AdminDashboard() {
 
       <div className="outer-box">
         <AddEmp />
+        {/* <EmpList/> */}
+
+        <div className="logOut" onClick={logout}>
+          Log Out
+        </div>
+
+        {/* <div className="emplist" onClick={navigate("/emp-list")}>
+          Employee List
+        </div> */}
+
+        <div className="emplist" onClick={console.log("Employee List")}>
+          Employee List
+        </div>
+
+        <div className="emplist">Employee List</div>
 
         <div className="inner-box">
           <table className="table table-hover">

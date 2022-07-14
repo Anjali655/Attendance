@@ -5,6 +5,7 @@ import EmpDashboard from "./Components/EmpDashboard";
 import AdminLogin from "./Components/AdminLogin";
 import AdminDashboard from "./Components/AdminDashboard";
 import AddEmp from "./Components/AddEmp";
+import EmpList from "./Components/EmpList";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route exact path="/admin" element={<AdminLogin />} />
             <Route path="/admin-dash" element={<AdminDashboard />} />
             <Route path="/add-emp" element={<AddEmp />} />
+            <Route path="/emp-list" element={<EmpList />} />
           </Routes>
         </div>
       </Router>

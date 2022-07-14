@@ -66,8 +66,10 @@
 
 .classify{
     position:absolute;
-     top: 30px;
-     right: 400px;
+     /* top: 30px; */
+     bottom: 580px;
+     /* right: 400px; */
+     left: 40px;
      background-color: rgb(68, 68, 208);
      box-shadow: 5px 10px 7px rgba(13, 10, 10, 0.1);
      color: white;

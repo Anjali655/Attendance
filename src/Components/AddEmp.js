@@ -24,6 +24,7 @@ function AddEmp() {
       }
     }
   `;
+  
   const [signup, { data, loading, error }] = useMutation(ADD_EMP);
   const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");

@@ -79,19 +79,15 @@ function AdminLogin() {
 
   // const navigate = useNavigate();
   const navigateToEmp = () => {
-    navigate('/');
-  }
+    navigate("/");
+  };
 
   return (
     <div className="outer-slide">
       {/* <div className="classify">
           <button className="btn btn-success btn-md" onClick={navigateToEmp}>Employee Login</button>
       </div> */}
-      <div 
-      variant="primary" 
-      className="classifybutton"
-      onClick={navigateToEmp}
-      >
+      <div variant="primary" className="classifybutton" onClick={navigateToEmp}>
         Employee Login
       </div>
 

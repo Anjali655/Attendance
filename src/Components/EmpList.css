@@ -1,0 +1,48 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+} 
+
+.outerCover{
+    align-items: center;
+    justify-content: center;
+    background-image: 
+    url("/public/emplistbg.png");
+    background-size: cover;
+    background-repeat:no-repeat; 
+    background-attachment: fixed;
+    height: 100vh;
+    object-fit: cover;
+}
+
+
+.innerCover{
+    align-items: center;
+    justify-content: center;
+    /* width: auto; */
+    height: auto;
+    width: 80%;
+    /* top: 60px; */
+    padding-left: 100px;
+    padding-top: 70px;
+}
+
+
+.emp_name{
+    text-align: center;
+    font-size: 2.3em;
+    font-family: "Times New Roman";
+    font-weight: bold;
+    padding-bottom: 50px;
+    color: green;
+}
+
+
+/* .tableStyle{
+    padding-left: 20px;
+
+} */

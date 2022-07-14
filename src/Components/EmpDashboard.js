@@ -10,6 +10,11 @@ function EmpDashboard() {
   const [show, setShow] = useState(false);
   const [goback, setGOBack] = useState(false);
   const [msg, setMsg] = useState();
+  const modalClose = () => {
+    setShow(false);
+    navigate("/");
+  };
+
   const navigate = useNavigate();
   const handleShow = () => {
     setShow(!show);
@@ -183,7 +188,7 @@ function EmpDashboard() {
             </span>
           </Modal.Body>
           <Modal.Footer>
-            <Button className="btn btn-info">
+            <Button className="btn btn-info" onClick={modalClose}>
               Close
             </Button>
           </Modal.Footer>
