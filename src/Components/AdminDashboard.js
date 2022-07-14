@@ -28,24 +28,18 @@ function AdminDashboard() {
 
   const [dataCheck, setDataCheck] = useState();
 
-  // useEffect(() => {
-  //   if (!data) {
-  //     setDataCheck(<h3>NO DATA AVAILABLE</h3>);
-  //   }
-  // }, [data]);
-
   function logout() {
     localStorage.clear();
     // localStorage.removeItem("token");
     navigate("/admin");
   }
 
-  // function emplist() {
-  //   console.log("hello");
-  //   navigate("/emp-list");
-  // }
+  const empList = () => {
+    console.log("div clicked");
+    navigate("/emp-list");
+  };
 
-  console.log(data, "data>>>>>>>>>>>>>>>");
+  // console.log(data, "data>>>>>>>>>>>>>>>");
   useEffect(() => {
     console.log(data?.getTodaysAttendance?.data, "data");
     if (data && data?.getTodaysAttendance?.data < 1) {
@@ -57,20 +51,8 @@ function AdminDashboard() {
     }
   }, [data]);
 
-  // if (loading) return <div>Loading...</div>;
-  // if (error) return `Error! ${error}`;
-
-  const ADD_EMP = gql`
-    mutation Mutation($input: signupInput) {
-      empSignup(input: $input) {
-        data {
-          fullname
-          username
-          password
-        }
-      }
-    }
-  `;
+  if (loading) return <div>Loading...</div>;
+  if (error) return `Error! ${error}`;
 
   return (
     <div>
@@ -104,15 +86,9 @@ function AdminDashboard() {
           Log Out
         </div>
 
-        {/* <div className="emplist" onClick={navigate("/emp-list")}>
-          Employee List
-        </div> */}
-
-        <div className="emplist" onClick={console.log("Employee List")}>
+        <div className="emplist" onClick={empList}>
           Employee List
         </div>
-
-        <div className="emplist">Employee List</div>
 
         <div className="inner-box">
           <table className="table table-hover">
