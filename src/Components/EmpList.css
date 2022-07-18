@@ -7,6 +7,13 @@
     padding: 0;
 } 
 
+@media screen and (max-width: 767px){
+    .form-wrapper{
+      width: 100%;
+    }
+  }
+  
+
 .outerCover{
     align-items: center;
     justify-content: center;
@@ -27,9 +34,11 @@
     height: auto;
     width: 80%;
     /* top: 60px; */
-    padding-left: 100px;
-    padding-top: 70px;
+    /* padding-left: 100px;
+    padding-top: 70px; */
+    padding: 70px 100px;
 }
+
 
 
 .emp_name{
@@ -41,8 +50,43 @@
     color: green;
 }
 
+.back-btn{
+    position:absolute;
+    bottom: 650px;
+    right: 40px;
+    background-color: green;
+    box-shadow: 5px 10px 7px rgba(13, 10, 10, 0.1);
+    color: white;
+    border-radius: 20px;
+    padding: 17px;
+    font-size: 18px;
+    cursor: pointer;
+}
 
-/* .tableStyle{
-    padding-left: 20px;
-
-} */
+.emplist{
+    position:absolute;
+    bottom: 500px;
+    left: 40px;
+    background-color: rgb(68, 68, 208);
+    box-shadow: 5px 10px 7px rgba(13, 10, 10, 0.1);
+    color: white;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 18px;
+    cursor: pointer;
+}
+@media only screen and (max-width: 476px){
+    /* Small smartphones [325px -> 425px] */
+        .innerCover{
+          padding: 0 10px 0 10px;
+        }
+        .form-wrapper .login-page{
+          display:block;
+        }
+        .back-btn{
+          top: 600px;
+          right: 40px;
+          position:absolute;
+          padding: 17px;
+        }
+    } 

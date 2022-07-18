@@ -58,6 +58,16 @@
     padding-left: 56px;
 }
 
+.modalLabel4{
+    color:blue; 
+    padding-left: 33px;
+}
+
+.modalLabel5{
+    color:blue; 
+    padding-left: 56px;
+}
+
 .modalBody{
     align-items: center;
     justify-content: center;

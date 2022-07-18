@@ -18,7 +18,7 @@ function EmpDashboard() {
   const navigate = useNavigate();
   const handleShow = () => {
     setShow(!show);
-    setTimeout(setGOBack(true), 1000);
+    // setTimeout(setGOBack(true), 1000);
   };
 
   React.useEffect(() => {
@@ -202,7 +202,7 @@ function EmpDashboard() {
           </div>
           <div className="date">
             <p>
-              <b>Date:{moment().format("LL")}</b>
+              <b>Date:{moment().format("llll")}</b>
             </p>
           </div>
         </div>

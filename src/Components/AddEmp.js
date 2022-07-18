@@ -18,28 +18,40 @@ function AddEmp() {
           fullname
           username
           password
+          department
+          mobile
         }
         message
         status
       }
     }
   `;
-  
+
   const [signup, { data, loading, error }] = useMutation(ADD_EMP);
   const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [department, setDepartment] = useState("");
+  const [mobile, setMobile] = useState("");
   const [usernameErr, setUsernameErr] = useState("");
   // localStorage.clear();
 
   const handleCreate = async () => {
-    if (fullname !== "" && username !== "" && password !== "") {
+    if (
+      fullname !== "" &&
+      username !== "" &&
+      password !== "" &&
+      department !== "" &&
+      mobile !== ""
+    ) {
       const data = await signup({
         variables: {
           input: {
             fullname: fullname,
             username: username,
             password: password,
+            department: department,
+            mobile: mobile,
           },
         },
       });
@@ -69,11 +81,8 @@ function AddEmp() {
 
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Add Employee
-      </Button> */}
       <div variant="primary" onClick={handleShow} className="classify">
-        Add Employee
+        <i class="bx bx-cart-add"></i> Add Employee
       </div>
       <Modal
         show={show}
@@ -123,6 +132,32 @@ function AddEmp() {
               placeholder="Enter password"
               onChange={(e) => {
                 setPassword(e.target.value);
+              }}
+            />
+          </label>
+
+          <label className="modalLabel4">
+            <b>Department:</b>&nbsp;&nbsp;&nbsp;
+            <input
+              className="modalBody"
+              type="text"
+              name="department"
+              placeholder="Enter Department"
+              onChange={(e) => {
+                setDepartment(e.target.value);
+              }}
+            />
+          </label>
+
+          <label className="modalLabel5">
+            <b>Mobile no:</b>&nbsp;&nbsp;&nbsp;
+            <input
+              className="modalBody"
+              type="text"
+              name="mobile"
+              placeholder="Enter mobile no."
+              onChange={(e) => {
+                setMobile(e.target.value);
               }}
             />
           </label>

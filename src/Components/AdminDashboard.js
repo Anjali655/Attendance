@@ -22,11 +22,10 @@ function AdminDashboard() {
         message
         status
       }
-    }
-  `;
+    }`;
   const { data, loading, error } = useQuery(GET_ATTENDANCE);
 
-  const [dataCheck, setDataCheck] = useState();
+  const [dataCheck, setDataCheck] = useState("");
 
   function logout() {
     localStorage.clear();
@@ -38,18 +37,22 @@ function AdminDashboard() {
     console.log("div clicked");
     navigate("/emp-list");
   };
-
   // console.log(data, "data>>>>>>>>>>>>>>>");
-  useEffect(() => {
-    console.log(data?.getTodaysAttendance?.data, "data");
-    if (data && data?.getTodaysAttendance?.data < 1) {
-      setDataCheck(
-        <div style={{ float: "right", paddingTop: "10px" }}>
-          <b>NO DATA AVAILABLE</b>
-        </div>
-      );
-    }
-  }, [data]);
+  
+  // useEffect(() => {
+  //   console.log(data, "data");
+  //   if (
+  //     (data && data?.getTodaysAttendance?.data < 1) ||
+  //     data === null ||
+  //     data === undefined
+  //   ) {
+  //     setDataCheck(
+  //       <div style={{ float: "right", paddingTop: "10px" }}>
+  //         <b>NO DATA AVAILABLE</b>
+  //       </div>
+  //     );
+  //   }
+  // }, [data]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return `Error! ${error}`;
@@ -80,14 +83,14 @@ function AdminDashboard() {
 
       <div className="outer-box">
         <AddEmp />
-        {/* <EmpList/> */}
+        {/* <EmpList /> */}
 
         <div className="logOut" onClick={logout}>
-          Log Out
+          <i class="bx bx-log-out"></i> Log Out
         </div>
 
         <div className="emplist" onClick={empList}>
-          Employee List
+          <i class="bx bx-list-ol"></i> Employee List
         </div>
 
         <div className="inner-box">
@@ -102,23 +105,25 @@ function AdminDashboard() {
 
             <tbody className="table-light">
               {dataCheck}
-              {data?.getTodaysAttendance?.data.map((value, index) => (
-                <tr key={index}>
-                  <td>{value.employeeName}</td>
-                  <td>
-                    {value.attendance === "present" ? (
-                      <div style={{ color: "green", fontSize: 20 }}>
-                        <i class="bx bxs-check-circle bx-border bx-tada"></i>
-                      </div>
-                    ) : (
-                      <div style={{ color: "grey" }}>
-                        <i class="bx bx-no-entry bx-border"></i>
-                      </div>
-                    )}
-                  </td>
-                  <td>{value.date}</td>
-                </tr>
-              ))}
+              {data !== null || data !== undefined
+                ? data?.getTodaysAttendance?.data.map((value, index) => (
+                    <tr key={index}>
+                      <td>{value.employeeName}</td>
+                      <td>
+                        {value.attendance === "present" ? (
+                          <div style={{ color: "green", fontSize: 20 }}>
+                            <i class="bx bxs-check-circle bx-border bx-tada"></i>
+                          </div>
+                        ) : (
+                          <div style={{ color: "grey" }}>
+                            <i class="bx bx-no-entry bx-border"></i>
+                          </div>
+                        )}
+                      </td>
+                      <td>{value.date}</td>
+                    </tr>
+                  ))
+                : ""}
             </tbody>
           </table>
         </div>
