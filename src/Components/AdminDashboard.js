@@ -17,12 +17,15 @@ function AdminDashboard() {
         data {
           employeeName
           attendance
-          date
+          signIn
+          signOut
         }
         message
         status
       }
-    }`;
+    }
+  `;
+
   const { data, loading, error } = useQuery(GET_ATTENDANCE);
 
   const [dataCheck, setDataCheck] = useState("");
@@ -38,7 +41,7 @@ function AdminDashboard() {
     navigate("/emp-list");
   };
   // console.log(data, "data>>>>>>>>>>>>>>>");
-  
+
   // useEffect(() => {
   //   console.log(data, "data");
   //   if (
@@ -99,7 +102,8 @@ function AdminDashboard() {
               <tr>
                 <th>Username</th>
                 <th>Present</th>
-                <th>Date</th>
+                <th>SignIn</th>
+                <th>SignOut</th>
               </tr>
             </thead>
 
@@ -116,11 +120,12 @@ function AdminDashboard() {
                           </div>
                         ) : (
                           <div style={{ color: "grey" }}>
-                            <i class="bx bx-no-entry bx-border"></i>
+                            <i class="bx bx-no-entry bx-border bx-tada"></i>
                           </div>
                         )}
                       </td>
-                      <td>{value.date}</td>
+                      <td>{value.SignIn}</td>
+                      <td>{value.SignOut}</td>
                     </tr>
                   ))
                 : ""}
