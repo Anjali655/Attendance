@@ -48,7 +48,6 @@ function Login() {
   const [pwdError, setPwdErr] = useState("");
 
   const [apiErr, setApiErr] = useState("");
-  localStorage.clear();
 
   async function handleClickEvent() {
     if (email && pwd) {
@@ -65,7 +64,6 @@ function Login() {
       console.log(loginData?.data);
 
       if (loginData?.data?.empLogin?.status === 200) {
-        localStorage.clear();
         localStorage.setItem("token", loginData?.data?.empLogin?.data?.token);
         navigate("/emp-dash");
       } else {

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./EmpDashboard.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 const moment = require("moment");
 
@@ -38,12 +38,32 @@ function EmpDashboard() {
     }
   `;
 
+  const SET_SIGNOUT = gql`
+    mutation Signout {
+      signout {
+        data
+        message
+        status
+      }
+    }
+  `;
+
+  const CHECK_ATTENDANCE = gql`
+    query CheckLogin {
+      checkLogin {
+        data
+        message
+        status
+      }
+    }
+  `;
+
   const Ref = useRef(null);
-  // The state for our timer
+
   const [timer, setTimer] = useState("00:00:00");
+  const [already, setAlready] = React.useState(false);
 
   const getTimeRemaining = (e) => {
-    // console.log(e, "events>>>>>>>>");
     const total = Date.parse(e) - Date.parse(new Date());
     const seconds = Math.floor((total / 1000) % 60);
     const minutes = Math.floor((total / 1000 / 60) % 60);
@@ -59,9 +79,6 @@ function EmpDashboard() {
   const startTimer = (e) => {
     let { total, hours, minutes, seconds } = getTimeRemaining(e);
     if (total >= 0) {
-      // update the timer
-      // check if less than 10 then we need to
-      // add '0' at the beginning of the variable
       setTimer(
         (hours > 9 ? hours : "0" + hours) +
           ":" +
@@ -75,14 +92,8 @@ function EmpDashboard() {
   };
 
   const clearTimer = (e) => {
-    // If you adjust it you should also need to
-    // adjust the Endtime formula we are about
-    // to code next
     setTimer("00:00:10");
 
-    // If you try to remove this line the
-    // updating of timer Variable will be
-    // after 1000ms or 1sec
     if (Ref.current) clearInterval(Ref.current);
     const id = setInterval(() => {
       startTimer(e);
@@ -93,14 +104,10 @@ function EmpDashboard() {
   const getDeadTime = () => {
     let deadline = new Date();
 
-    // This is where you need to adjust if
-    // you entend to add more time
     deadline.setSeconds(deadline.getSeconds() + 10);
     return deadline;
   };
 
-  // We put empty array to act as componentDid
-  // mount only
   useEffect(() => {
     clearTimer(getDeadTime());
   }, []);
@@ -109,7 +116,16 @@ function EmpDashboard() {
     clearTimer(getDeadTime());
   };
 
-  const [attendance, { loading, error, data }] = useMutation(SET_ATTENDANCE);
+  const [attendance, { loading1, error1, data1 }] = useMutation(SET_ATTENDANCE);
+  const [signout, { loading2, error2, data2 }] = useMutation(SET_SIGNOUT);
+
+  const { data, loading, error } = useQuery(CHECK_ATTENDANCE);
+
+  console.log(data, "data????data??????data");
+
+  React.useEffect(() => {
+    setAlready(data);
+  }, [data, loading, error]);
 
   const markAttendance = async () => {
     const attendancedata = await attendance({
@@ -140,6 +156,13 @@ function EmpDashboard() {
     }
 
     console.log(attendancedata, "attendance");
+  };
+
+  const signedout = async () => {
+    const signoutdata = await signout({
+      variables: {},
+    });
+    alert(signoutdata?.data?.signout?.data);
   };
 
   return (
@@ -196,9 +219,17 @@ function EmpDashboard() {
         {/* MODAL POPUP END */}
         <div className="wrapper">
           <div>
-            <button className="bn632-hover bn22" onClick={markAttendance}>
-              <b style={{ color: "rgb(255, 165, 8)" }}>I am Present</b>
-            </button>
+            {loading ? (
+              "Please Wait ..."
+            ) : data?.checkLogin?.status === 201 ? (
+              <button className="bn632-hover bn22" onClick={markAttendance}>
+                <b style={{ color: "rgb(255, 165, 8)" }}>I am Present</b>
+              </button>
+            ) : (
+              <button className="bn632-hover bn22" onClick={signedout}>
+                <b style={{ color: "rgb(255, 165, 8)" }}>Sign Me Out</b>
+              </button>
+            )}
           </div>
           <div className="date">
             <p>

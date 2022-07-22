@@ -65,9 +65,7 @@ function AdminLogin() {
       console.log(loginData?.data);
 
       if (loginData?.data?.adminLogin?.status === 200) {
-        localStorage.clear();
         localStorage.setItem("token", loginData?.data?.adminLogin?.data?.token);
-          
         navigate("/admin-dash");
       } else {
         setApiErr(loginData?.data?.adminLogin?.message);
