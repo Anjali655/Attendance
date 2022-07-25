@@ -150,31 +150,24 @@ function AdminDashboard() {
 
             <tbody className="table-light">
               {dataCheck}
-              {data !== null || data !== undefined
-                ? data?.getTodaysAttendance?.data.map((value, index) => (
-                    <tr key={index}>
-                      <td>{value.employeeName}</td>
-                      <td>
-                        {value.attendance === "present" ? (
-                          <div style={{ color: "green", fontSize: 20 }}>
-                            <i class="bx bxs-check-circle bx-border bx-tada"></i>
-                          </div>
-                        ) : (
-                          <div style={{ color: "grey" }}>
-                            <i class="bx bx-no-entry bx-border bx-tada"></i>
-                          </div>
-                        )}
-                      </td>
-                      <td>{value.signIn}</td>
-                      <td>{value.signOut}</td>
-                    </tr>
-                  ))
-                : ""}
-              {searchData
-                ? searchData.length === 0
-                  ? "No Data Found"
-                  : ""
-                : ""}
+              {searchData ? (
+                searchData.length === 0 ? (
+                  <h4
+                    style={{
+                      marginTop: "10px",
+                      marginLeft: "200px",
+                      textAlign: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <b>No Data Found</b>
+                  </h4>
+                ) : (
+                  ""
+                )
+              ) : (
+                ""
+              )}
               {searchData
                 ? searchData !== null || searchData !== undefined
                   ? searchData.map((value, index) => (
@@ -196,7 +189,28 @@ function AdminDashboard() {
                       </tr>
                     ))
                   : ""
-                : ""}
+                : data !== null || data !== undefined
+                ? data?.getTodaysAttendance?.data.length > 0
+                  ? data?.getTodaysAttendance?.data.map((value, index) => (
+                      <tr key={index}>
+                        <td>{value.employeeName}</td>
+                        <td>
+                          {value.attendance === "present" ? (
+                            <div style={{ color: "green", fontSize: 20 }}>
+                              <i class="bx bxs-check-circle bx-border bx-tada"></i>
+                            </div>
+                          ) : (
+                            <div style={{ color: "grey" }}>
+                              <i class="bx bx-no-entry bx-border bx-tada"></i>
+                            </div>
+                          )}
+                        </td>
+                        <td>{value.signIn}</td>
+                        <td>{value.signOut}</td>
+                      </tr>
+                    ))
+                  : "No Data Found..."
+                : "No Data Found..."}
             </tbody>
           </table>
         </div>

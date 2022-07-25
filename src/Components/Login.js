@@ -11,6 +11,7 @@ import { useLazyQuery, gql } from "@apollo/client";
 ></script>;
 
 function Login() {
+  localStorage.clear();
   const [eye, setEye] = useState(false);
   const [defaulteye, setSefaulteye] = useState("far fa-eye");
   const [inputType, setInputType] = useState("password");
@@ -49,6 +50,8 @@ function Login() {
 
   const [apiErr, setApiErr] = useState("");
 
+  const [loginCheck, setLoginCheck] = useState();
+
   async function handleClickEvent() {
     if (email && pwd) {
       const loginData = await data({
@@ -61,22 +64,26 @@ function Login() {
       });
 
       // console.log(loginData);
-      console.log(loginData?.data);
-
-      if (loginData?.data?.empLogin?.status === 200) {
-        localStorage.setItem("token", loginData?.data?.empLogin?.data?.token);
-        navigate("/emp-dash");
-      } else {
-        const error = loginData?.data?.empLogin?.message;
-        // setApiErr(loginData?.data?.empLogin?.message);
-        alert(error);
-      }
+      console.log(loginData);
+      setLoginCheck(loginData);
     } else {
       alert("Please enter login email and valid password");
       // email ? setEmailErr("") : setEmailErr("Please enter login email");
       // pwd ? setPwdErr("") : setPwdErr("Please enter valid password");
     }
   }
+
+  React.useEffect(() => {
+    if (loginCheck) {
+      if (loginCheck?.data?.empLogin?.status === 200) {
+        localStorage.setItem("token", loginCheck?.data?.empLogin?.data?.token);
+        navigate("/emp-dash");
+      } else {
+        const error = loginCheck?.data?.empLogin?.message;
+        alert(error);
+      }
+    }
+  }, [loginCheck]);
 
   const navigate = useNavigate();
   const navigateToAdmin = () => {
@@ -158,7 +165,11 @@ function Login() {
                   }}
                 />
 
-                <i className={defaulteye} id="togglePassword"></i>
+                <i
+                  className={defaulteye}
+                  onClick={ShowAndHidePassword}
+                  id="togglePassword"
+                ></i>
               </div>
               <label>{pwdError}</label>
             </div>

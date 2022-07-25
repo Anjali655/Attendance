@@ -21,7 +21,7 @@ function EmpDashboard() {
     // setTimeout(setGOBack(true), 1000);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (goback) {
       setShow(!show);
       navigate("/");
@@ -58,63 +58,7 @@ function EmpDashboard() {
     }
   `;
 
-  const Ref = useRef(null);
-
-  const [timer, setTimer] = useState("00:00:00");
-  const [already, setAlready] = React.useState(false);
-
-  const getTimeRemaining = (e) => {
-    const total = Date.parse(e) - Date.parse(new Date());
-    const seconds = Math.floor((total / 1000) % 60);
-    const minutes = Math.floor((total / 1000 / 60) % 60);
-    const hours = Math.floor((total / 1000 / 60 / 60) % 24);
-    return {
-      total,
-      hours,
-      minutes,
-      seconds,
-    };
-  };
-
-  const startTimer = (e) => {
-    let { total, hours, minutes, seconds } = getTimeRemaining(e);
-    if (total >= 0) {
-      setTimer(
-        (hours > 9 ? hours : "0" + hours) +
-          ":" +
-          (minutes > 9 ? minutes : "0" + minutes) +
-          ":" +
-          (seconds > 9 ? seconds : "0" + seconds)
-      );
-    } else {
-      navigate("/");
-    }
-  };
-
-  const clearTimer = (e) => {
-    setTimer("00:00:10");
-
-    if (Ref.current) clearInterval(Ref.current);
-    const id = setInterval(() => {
-      startTimer(e);
-    }, 1000);
-    Ref.current = id;
-  };
-
-  const getDeadTime = () => {
-    let deadline = new Date();
-
-    deadline.setSeconds(deadline.getSeconds() + 10);
-    return deadline;
-  };
-
-  useEffect(() => {
-    clearTimer(getDeadTime());
-  }, []);
-
-  const onClickReset = () => {
-    clearTimer(getDeadTime());
-  };
+  const [already, setAlready] = useState(false);
 
   const [attendance, { loading1, error1, data1 }] = useMutation(SET_ATTENDANCE);
   const [signout, { loading2, error2, data2 }] = useMutation(SET_SIGNOUT);
@@ -123,7 +67,7 @@ function EmpDashboard() {
 
   console.log(data, "data????data??????data");
 
-  React.useEffect(() => {
+  useEffect(() => {
     setAlready(data);
   }, [data, loading, error]);
 
@@ -139,16 +83,12 @@ function EmpDashboard() {
 
     if (attendancedata?.data?.markAttendance?.status === 200) {
       setShow(!show);
-      setMsg(
-        "Your Attendance is marked & you will be redirected to Login page in..."
-      );
+      setMsg("Your Attendance is marked");
     } else if (
       attendancedata?.data?.markAttendance?.message ===
       "Already taken attendance"
     ) {
-      setMsg(
-        "Your Attendance is already marked & you will be redirected to Login page in..."
-      );
+      setMsg("Your Attendance is already marked");
       setShow(!show);
     } else {
       console.log("some error occured...");
@@ -163,6 +103,8 @@ function EmpDashboard() {
       variables: {},
     });
     alert(signoutdata?.data?.signout?.data);
+    localStorage.clear();
+    navigate("/");
   };
 
   return (
@@ -190,7 +132,7 @@ function EmpDashboard() {
         <Modal
           show={show}
           onHide={handleShow}
-          size="lg"
+          size="md"
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
@@ -201,9 +143,10 @@ function EmpDashboard() {
           </Modal.Title>
           <Modal.Body>
             {/* <span onClick={handleShow}>X</span> &nbsp;&nbsp;&nbsp;&nbsp; */}
-            <span>
+            <span style={{ marginLeft: "130px" }}>
               {/* Your Attendance is marked & you will be redirected to Login page */}
-              {msg} <b>{timer}</b>
+              {msg}
+              {/* <b>{timer}</b> */}
               {/* <div> */}
               {/* <h2>{timer}</h2> */}
               {/* <button onClick={onClickReset}>Reset</button> */}
@@ -221,7 +164,7 @@ function EmpDashboard() {
           <div>
             {loading ? (
               "Please Wait ..."
-            ) : data?.checkLogin?.status === 201 ? (
+            ) : already?.checkLogin?.status === 201 ? (
               <button className="bn632-hover bn22" onClick={markAttendance}>
                 <b style={{ color: "rgb(255, 165, 8)" }}>I am Present</b>
               </button>
